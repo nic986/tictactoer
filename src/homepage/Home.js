@@ -216,7 +216,7 @@ const Home = () => {
               playClickSound();
             }}
           >
-            More
+            More.
           </button>
         )}
         <div
