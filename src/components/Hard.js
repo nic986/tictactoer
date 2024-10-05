@@ -309,7 +309,7 @@ export const Hard = () => {
     <div className={GameStyle.game} style={{ ...myStyle, boxShadow: 'none' }}>
       <h1 className={GameStyle.navbar}>Player vs AI</h1>
       <div className={GameStyle.heading}>
-        <h6>Hard Mode</h6>
+        <h6>Hard Mode!</h6>
       </div>
       <hr />
       <div className={GameStyle.mainBox} >

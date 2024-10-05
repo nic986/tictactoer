@@ -6,7 +6,6 @@ import {
   faInstagram,
   faGithub,
   faLinkedin,
-  faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 import clickSound from "../components/click.mp3";
 
