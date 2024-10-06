@@ -215,7 +215,7 @@ const Home = () => {
               playClickSound();
             }}
           >
-            More.
+            More
           </button>
         )}
         <div
@@ -231,7 +231,7 @@ const Home = () => {
                 playClickSound();
               }}
             >
-              Social
+              Creater
             </button>
           )}
           {showSetting && (
