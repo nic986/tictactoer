@@ -57,15 +57,31 @@ const Home = () => {
     }
   };
   const [myStyle, setMyStyle] = useState(() => {
-    const savedTheme = localStorage.getItem("theme");
-    return savedTheme
-      ? JSON.parse(savedTheme)
-      : {
+    try {
+      const savedTheme = localStorage.getItem("theme");
+
+      // Check if it exists and is a valid JSON object
+      if (savedTheme && savedTheme.startsWith("{")) {
+        return JSON.parse(savedTheme);
+      } else {
+        // Reset theme if it's invalid (e.g., "dark")
+        localStorage.removeItem("theme");
+        return {
           color: "#ffffff",
           backgroundColor: "#212121",
-          boxShadow: "0 0 8px  rgba(0,0,0,0.3)",
+          boxShadow: "0 0 8px rgba(0,0,0,0.3)",
         };
+      }
+    } catch (error) {
+      console.error("Invalid theme data in localStorage:", error);
+      return {
+        color: "#ffffff",
+        backgroundColor: "#212121",
+        boxShadow: "0 0 8px rgba(0,0,0,0.3)",
+      };
+    }
   });
+
   const [buttonStyle, setButtonStyle] = useState(() => {
     const savedTheme = localStorage.getItem("theme");
     return savedTheme
@@ -84,8 +100,8 @@ const Home = () => {
       : {
           color: "#ffffff",
           backgroundColor: "#212121",
-          boxShadow: "0 0 8px rgba(0,0,0,0.3)",
-          border: "1px solid #adadad",
+          boxShadow: "0 0 8px rgba(223, 223, 223, 0.3)",
+          border: "1px solidrgb(230, 230, 230)",
         };
   });
   const toggleStyle = (event) => {
@@ -95,31 +111,15 @@ const Home = () => {
         ? {
             color: "#212121",
             backgroundColor: "#ffffff",
-            boxShadow: "0 0 8px  rgba(0,0,0,0.3)",
+            boxShadow: "0 0 8px rgba(172, 172, 172, 0.3)",
           }
         : {
             color: "#ffffff",
             backgroundColor: "#212121",
-            boxShadow: "0 0 8px  rgba(0,0,0,0.3)",
+            boxShadow: "0 0 8px rgba(209, 209, 209, 0.3)",
           };
-    const buttonStyle =
-      myStyle.color === "#ffffff"
-        ? {
-            color: "black",
-            backgroundColor: "#ffffff",
-            boxShadow: "0 0 8px rgba(0,0,0,0.3)",
-          }
-        : {
-            color: "#ffffff",
-            backgroundColor: "#212121",
-            boxShadow: "0 0 8px rgba(0,0,0,0.3)",
-            border: "1px solid #adadad",
-          };
+
     setMyStyle(newStyle);
-    setButtonStyle(buttonStyle);
-    const ThemeText =
-      myStyle.color === "#212121" ? "Dark Mode On" : "Dark Mode Off";
-    setThemeText(ThemeText);
     localStorage.setItem("theme", JSON.stringify(newStyle));
   };
 
@@ -299,7 +299,7 @@ const Home = () => {
               className={homeStyle.socialBtn2}
               style={myStyle}
               onClick={() => {
-                window.open("https://github.com/nic986");
+                window.open("https://github.com/SantoshThapa9");
                 playClickSound();
               }}
             >
